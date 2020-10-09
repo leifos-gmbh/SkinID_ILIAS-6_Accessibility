@@ -7752,7 +7752,7 @@ ul.dropdown-menu > li > .btn:focus {
   color: #3a4c65;
 }
 .breadcrumbs .breadcrumb > span + span:before {
-  content: "»";
+  content: " \e606";
   color: #333333;
   padding: 8px 10px;
   font-family: "il-icons";
@@ -8187,11 +8187,8 @@ ul.dropdown-menu > li > .btn:focus {
   border-radius: 0px;
   background-color: #FFF9BC;
 }
-.il-input-file .il-input-file-fileinfo,
-.il-input-file .il-input-file-error {
-  padding: 6px 12px;
-}
 .il-input-file .il-input-file-fileinfo {
+  padding: 6px 12px;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
@@ -8426,6 +8423,20 @@ fieldset[disabled] .il-table-presentation-viewcontrols .btn-default:not(.disable
 }
 .il-table-presentation-row .il-table-presentation-row-expanded .il-table-presentation-details .il-table-presentation-fields .il-item-property-name {
   color: #808080;
+}
+.il-table-data {
+  display: table;
+}
+.il-table-data .row {
+  display: table-row;
+}
+.il-table-data .row .cell {
+  display: table-cell;
+  border: thin solid black;
+  padding: 5px;
+}
+.il-table-data .header.cell {
+  font-weight: bold;
 }
 .il-workflow-header .il-workflow-title {
   background-color: #f2f2f2;
@@ -8861,6 +8872,7 @@ footer {
   min-height: auto;
   padding: 20px 0 15px 5px;
   text-align: center;
+  z-index: 2;
 }
 /*
 **************************************************************
@@ -9102,20 +9114,14 @@ footer {
   html body {
     overflow: visible;
   }
-  html body .il-layout-page {
+  html body section.il-layout-page {
     display: block;
     overflow: visible;
   }
-  html body .il-layout-page header,
-  html body .il-layout-page .il-maincontrols,
-  html body .il-layout-page .breadcrumbs,
-  html body .il-layout-page footer,
-  html body .il-layout-page .ilFileDropTargetOverlay {
-    display: none !important;
-  }
-  html body .il-layout-page-content,
-  html body .il-layout-page-content div {
-    display: block;
+  html body section.il-layout-page header,
+  html body section.il-layout-page nav,
+  html body section.il-layout-page footer {
+    display: none;
   }
 }
 .il-maincontrols-slate.disengaged {
@@ -9204,23 +9210,6 @@ footer {
   font-family: "il-icons";
   font-size: 1.7rem;
   margin-right: 10px;
-}
-.il-maincontrols-slate #il-tag-slate-container .btn-bulky,
-.il-maincontrols-slate #ilHelpPanel .btn-bulky {
-  padding: 6px;
-  text-align: center;
-  text-transform: uppercase;
-}
-.il-maincontrols-slate #il-tag-slate-container .btn-bulky .glyph :before,
-.il-maincontrols-slate #ilHelpPanel .btn-bulky .glyph :before {
-  content: " \e605";
-  font-family: "il-icons";
-  font-size: 1.7rem;
-  margin-right: 10px;
-}
-.il-maincontrols-slate #il-tag-slate-container .btn-bulky .bulky-label,
-.il-maincontrols-slate #ilHelpPanel .btn-bulky .bulky-label {
-  margin-top: 3px;
 }
 .il-maincontrols-slate.engaged[data-depth-level="2"] .btn-bulky:not(:hover),
 .il-maincontrols-slate.engaged[data-depth-level="2"] .link-bulky:not(:hover) {
@@ -12330,6 +12319,11 @@ body.mceContentBody {
 body#tinymce {
   background-color: white;
 }
+html.il-no-tiny-bg body#tinymce {
+  background-color: transparent;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
 .ilHidden {
   visibility: hidden;
 }
@@ -12667,7 +12661,7 @@ div.il_info {
 }
 /* ---------------- headlines ------------------ */
 a#il_mhead_t_focus {
-  color: #223112;
+  color: #3b5620;
   vertical-align: middle;
   font-size: 26px;
   cursor: default;
@@ -13313,6 +13307,7 @@ img.ilSmallIcon {
 }
 span.ilIcalIcon {
   text-align: initial;
+  font-size: 133%;
 }
 /* Component Imports */
 /* Services/Accordion */
@@ -14175,14 +14170,50 @@ select.ilEditSelect {
   text-decoration: none;
   font-size: 12px;
 }
+[data-copg-ed-type='add-area'] {
+  height: 30px;
+}
+button.copg-add.dropdown-toggle.btn,
+button.copg-add.dropdown-toggle.btn:focus,
+button.copg-add.dropdown-toggle.btn:hover {
+  padding: 1px 5px;
+  text-align: center;
+  font-size: 12px;
+  background-color: transparent;
+  cursor: pointer;
+  width: 100%;
+  height: 30px;
+  border: 0;
+}
+button.copg-add.dropdown-toggle.btn .glyphicon-plus,
+button.copg-add.dropdown-toggle.btn:focus .glyphicon-plus,
+button.copg-add.dropdown-toggle.btn:hover .glyphicon-plus,
+#copg-editor-help .glyphicon-plus {
+  border-radius: 50%;
+  background-color: #f3f3f3;
+  padding: 4px;
+  color: #b6b6b6;
+}
+button.copg-add.dropdown-toggle.btn:hover {
+  background-color: #f3f3f3;
+  color: #797979;
+}
+[data-copg-ed-type='add-area'] ul.dropdown-menu {
+  left: 45%;
+}
+button.copg-add:hover {
+  color: #6fa03c;
+  background-color: #d9eac8;
+}
 div.il_droparea {
   padding: 1px 5px;
   border: 1px dashed #d0d0d0;
   color: #d0d0d0;
   text-align: center;
   font-size: 12px;
-  background-color: #fcfcfc;
+  background-color: #fffed1;
   cursor: pointer;
+  height: 30px;
 }
 div.il_droparea:hover,
 div.ilCOPGDropActice,
@@ -14199,8 +14230,12 @@ div.il_editarea_nojs {
   border-width: 1px dotted #999;
 }
 div.il_editarea {
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   min-height: 20px;
+}
+div.il_editarea:hover,
+#tinytarget_ifr {
+  border: 2px solid #4c6586;
 }
 div.ilc_page_Page > div.il_editarea_disabled {
   padding: 10px;
@@ -14217,13 +14252,13 @@ div.il_editarea_disabled {
   padding: 2px 5px;
   background-color: white;
 }
-div.il_editarea_active {
-  border: 1px solid #909090;
-  min-height: 20px;
-}
 div.il_editarea_selected {
-  border: 2px solid #557b2e;
-  min-height: 20px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #a2cc76;
+}
+div.il_editarea_selected:hover {
+  border-color: #557b2e;
 }
 div.il_editarea_disabled_selected {
   border: 2px solid #B95304;
@@ -14248,12 +14283,22 @@ table.il_editmenu td {
 }
 div.ilEditLabel {
   position: absolute;
-  background-color: #f5f5f5;
+  background-color: #4c6586;
+  color: #f0f0f0;
   font-size: 70%;
   padding: 1px 3px;
-  border-style: solid;
-  border-width: 0 1px 1px 0;
-  border-color: #909090;
+  margin-top: -15px;
+  margin-left: -2px;
+  border: 0;
+  height: 15px;
+  display: none;
+}
+div.il_editarea:hover > div.ilEditLabel,
+.copg-ghost-wrapper div.ilEditLabel {
+  display: block;
+}
+div.il_editarea_selected:hover > div.ilEditLabel {
+  background-color: #557b2e;
 }
 div.ilEditVAccordCntr {
   margin-top: 15px;
@@ -14275,25 +14320,48 @@ div.ilEditVAccordICont {
   padding: 10px;
   background-color: white;
 }
-div.ilTinyMenuSection {
+.ilTinyMenuSection .dropdown,
+.il-copg-button-group .dropdown {
+  display: inline-block;
+}
+.ilTinyMenuSection .dropdown-menu .btn,
+.il-copg-button-group .dropdown-menu .btn {
+  border: 0;
+}
+.ilTinyMenuSection .btn svg {
+  fill: white;
+  margin: -8px;
+}
+div.ilTinyMenuSection,
+.il-copg-button-group {
   float: left;
   white-space: nowrap;
   /* border-right: 1px solid #e0e0e0; */
   /* padding: 0 10px 4px 0; */
   margin-right: 10px;
+  margin: 10px 10px 10px 0;
 }
-div.ilTinyMenuSection p {
-  margin: 20px 0 5px 0;
+div.ilTinyMenuSection p,
+.il-copg-button-group p {
+  margin-bottom: 5px;
   padding: 2px 5px;
   background-color: #f5f5f5;
 }
 @media only screen and (max-width: 768px) {
-  div.ilTinyMenuSection {
+  div.ilTinyMenuSection,
+  .il-copg-button-group {
     height: 28px;
     margin: 3px 3px 3px 0px;
     padding: 0 10px 0 0;
     border-right: 0 none;
   }
+}
+div.il-copg-button-group ul.dropdown-menu {
+  right: auto;
+}
+div.il-copg-button-group-wide {
+  width: 100%;
+  float: none;
 }
 [dir="rtl"] div.ilTinyMenuSection {
   float: right;
@@ -14348,9 +14416,6 @@ div.ilTinyMenuSection p {
 #iltinymenu a.btn {
   min-width: 30px;
 }
-#iltinymenu_bd {
-  padding: 10px;
-}
 #ilsaving {
   position: fixed;
   top: 0;
@@ -14401,6 +14466,17 @@ li.ilc_page_toc_PageTOCItem {
   margin: 5px 0 0;
   padding: 0;
   white-space: nowrap;
+}
+a.ilc_page_toc_PageTOCLink {
+  color: #03a;
+  font-weight: normal;
+  text-decoration: none;
+}
+a.ilc_page_toc_PageTOCLink:hover {
+  color: black;
+}
+a.ilc_page_toc_PageTOCLink:visited {
+  color: blue;
 }
 /* --- content styles (will move to content.css) --- */
 td.ilc_PageDisabled {
@@ -14504,9 +14580,6 @@ a.nostyle:hover {
 #error_panel_c {
   z-index: 2000 !important;
 }
-#ilPageEditLegend {
-  padding: 10px;
-}
 #ilPageEditLegend > div {
   margin: 5px 0;
 }
@@ -14579,11 +14652,6 @@ div.ilc_question_SingleChoice .ilc_qanswer_Answer > div:first-child,
 div.ilc_question_MultipleChoice .ilc_qanswer_Answer > div:first-child {
   padding-right: 10px;
 }
-@media only screen and (max-width: 768px) {
-  .ilTinyInfo {
-    display: none;
-  }
-}
 div.ilCOPGMediaPrint {
   background-color: white !important;
   position: relative !important;
@@ -14600,12 +14668,77 @@ div.ilCOPGMediaPrint {
   margin: 0;
   border: 0;
 }
-#ilAdvSelListTable_style_selection,
-#ilTinyMenuButtons ul.dropdown-menu {
+.ilTinyParagraphClassSelector ul.dropdown-menu {
   right: auto;
 }
 #iltinymenu .dropdown-menu li {
   padding: 0;
+}
+#tinytarget_ifr > body#tinymce {
+  background-color: inherit;
+}
+#tinytarget_ifr {
+  background-color: transparent;
+}
+#tinytarget_div {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+#tinytarget_div div.tox-edit-area {
+  background-color: transparent;
+}
+#tinytarget_div .tox-tinymce {
+  border: 0;
+  background-color: transparent;
+}
+.copg-ghost-wrapper {
+  min-height: 20px;
+  position: relative;
+  /* important for the absolute positioned tinytarget_div */
+}
+.copg-input-ghost {
+  visibility: hidden;
+}
+#copg-editor-slate-content {
+  padding: 15px;
+}
+#copg-editor-slate-content p {
+  padding: 0;
+  margin: 5px 0;
+}
+#copg-editor-slate-content p.ilTinyInfo {
+  padding: 2px;
+}
+@media only screen and (max-width: 768px) {
+  #copg-editor-slate-content p.ilTinyInfo {
+    display: none;
+  }
+}
+#copg-editor-slate-content div.alert {
+  margin: 10px 0;
+}
+#copg-editor-slate-content form .ilFormHeader {
+  padding: 10px;
+}
+#copg-editor-slate-content form .ilFormHeader h3.ilHeader {
+  font-size: 14px;
+}
+#copg-editor-slate-content form .col-sm-3,
+#copg-editor-slate-content form .col-sm-9 {
+  width: 100%;
+}
+#copg-editor-slate-content form .control-label {
+  text-align: left;
+  font-weight: bold;
+}
+p#copg-auto-save {
+  padding: 0;
+  margin: -5px 0 0 0;
+}
+.copg-edit-container {
+  border: 1px dashed #d0d0d0;
 }
 /* Services/Calendar */
 td.even {
@@ -15570,9 +15703,6 @@ div.ilTableNav {
   font-size: 80%;
   text-align: right;
 }
-div.ilTableNav table {
-  width: 100%;
-}
 tr.tblfooter {
   color: black;
   font-weight: normal;
@@ -15589,6 +15719,7 @@ div.ilTableHeaderTitleBlock {
   padding: 3px;
   font-size: 90%;
   color: #404040;
+  background: url("images/block_top.png") repeat-x #f8f8f8;
   border-bottom: 1px solid #e9e9e9;
 }
 div.ilTableHeaderTitle {
@@ -15757,7 +15888,7 @@ td > img[src$="icon_custom.svg"] {
     max-width: 94vw;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .table-responsive {
     overflow: visible;
   }
@@ -15817,12 +15948,6 @@ textarea#note {
 }
 div.ilNoteInput {
   padding-bottom: 10px;
-}
-.ilNotesCheckboxes .ilComment {
-  padding-left: 80px;
-}
-.ilNotesCheckboxes .ilNoteList input[type="checkbox"] {
-  position: absolute;
 }
 /* Modules/Blog */
 div.ilBlogList {
@@ -17390,7 +17515,7 @@ div#il_startup_logo img {
   }
 }
 /* Services/UIComponent/Tooltip */
-div.qtip.qtip-default {
+.qtip-default {
   font-size: 12px;
   line-height: 1.5;
   background-color: #607ea5;
@@ -17549,12 +17674,6 @@ span.ilNewsRssIcon:hover {
   margin-right: 0;
 }
 @media only screen and (max-width: 768px) {
-  .ilTimeline > li:nth-child(even) > .ilTimelineBadge {
-    right: auto;
-    left: 90%;
-  }
-}
-@media only screen and (max-width: 768px) {
   .ilTimeline > li {
     margin-right: 0;
   }
@@ -17609,8 +17728,6 @@ span.ilNewsRssIcon:hover {
 @media only screen and (max-width: 768px) {
   .ilTimeline > li > .ilTimelineBadge {
     left: 90%;
-    right: auto;
-    margin-left: -25px;
   }
 }
 .ilTimeline > li > .ilTimelineBadge > .ilTimelineDay {
@@ -17667,9 +17784,9 @@ span.ilNewsRssIcon:hover {
   background-color: white;
 }
 .ilNewsTimelineTruncatedText {
-  /*overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .ilNewsTimelineObjHead img {
   width: 22px;
@@ -18936,9 +19053,6 @@ span.ilProfileBadge .modal .img-responsive {
   margin-bottom: 10px;
   background-color: #e6e6e6;
 }
-.ilLSOKioskModeNavigation .navbar-form {
-  line-height: 25px;
-}
 .ilLSOKioskTopBarControls {
   float: left;
   display: block;
@@ -19519,6 +19633,38 @@ a:hover {
 .il-panel-listing-std-container > h3 {
   color: #333333;
 }
+.il-item {
+  background-color: #fafafa;
+}
+.il-maincontrols-slate-content .panel.panel-secondary.panel-flex .il-item {
+  background-color: white;
+}
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.clearfix,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.dl-horizontal dd,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.container,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.container-fluid,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.row,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.form-horizontal .form-group,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.btn-toolbar,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.btn-group-vertical > .btn-group,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.nav,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.navbar,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.navbar-header,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.navbar-collapse,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.pager,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.panel-body,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.modal-header,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.modal-footer,
+#il_right_col .panel.panel-secondary.panel-flex .panel-heading.ilHeader.il-table-presentation-row .il-table-presentation-row-expanded {
+  background-color: #fafafa;
+}
+#il_right_col .panel.panel-secondary.panel-flex .panel-body {
+  background-color: #fafafa;
+}
+#il_right_col .panel.panel-secondary.panel-flex .il-viewcontrol-pagination,
+.panel-flex .il-viewcontrol-section {
+  background-color: #fafafa;
+}
 /*SIDE BLOCKS*/
 div.ilBlockInfo {
   color: #333333;
@@ -19617,6 +19763,27 @@ td.ilBlockHeaderBig {
   line-height: 1.5;
   margin-left: 4px;
 }
+.il-mainbar-tools-entries-bg {
+  background-color: #fafafa;
+}
+.il-mainbar-tools-button .btn-bulky.engaged:focus {
+  outline: none !important;
+  border: 4px solid #B95304;
+}
+.il-mainbar-tools-button .btn-bulky:focus,
+.il-mainbar-tools-entries .btn-bulky.engaged:focus,
+.il-mainbar-tools-entries .btn-bulky.engaged:focus,
+.il-mainbar-tools-entries .il-link.link-bulky.engaged:focus {
+  outline: none !important;
+  border: 4px solid #B95304;
+}
+.il-mainbar-close-slates .btn-bulky:focus {
+  outline: none !important;
+  border: 4px solid #B95304;
+}
+.breadcrumbs a {
+  line-height: 3 !important;
+}
 #ilTab {
   border-bottom: 2px solid #595959;
 }
@@ -19636,6 +19803,10 @@ td.ilBlockHeaderBig {
   color: #595959;
 }
 div.ilTableOuter {
+  background-color: #fafafa;
+}
+div.ilTableCommandRow,
+div.ilTableCommandRowTop {
   background-color: #fafafa;
 }
 span.ilTableFootLight {
